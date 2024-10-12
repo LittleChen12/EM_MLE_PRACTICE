@@ -34,7 +34,7 @@ soft_guess1 = 0.5
 soft_guess2 = 0.5
 
 # 选择1维或是多维
-# gray_status = True
+#gray_status = True
 gray_status = False
 
 # 一维时的EM
@@ -66,7 +66,7 @@ if gray_status:
     gray_s_old = gray1_s + gray2_s
     count = 0
     # 迭代更新参数
-    for epoch in range(30):
+    for epoch in range(60):
         count = count + 1
         print(count)
         for i in range(len(sample)):
@@ -142,15 +142,15 @@ if gray_status:
 # 三维时的EM
 # -------------------------------------------------------------------------------------------------------#
 else:
-    # 观察图像，肉眼估计初始值
-    RGB1_m = np.array([0.5, 0.5, 0.5])
-    RGB2_m = np.array([0.8, 0.8, 0.8])
-    RGB1_cov = np.array([[0.1, 0.05, 0.04],
-                        [0.05, 0.1, 0.02],
-                        [0.04, 0.02, 0.1]])
-    RGB2_cov = np.array([[0.1, 0.05, 0.04],
-                        [0.05, 0.1, 0.02],
-                        [0.04, 0.02, 0.1]])
+    # 观察图像，肉眼估计初始值,为了显示迭代，此处估计将均值与方差设置的比较不符合
+    RGB1_m = np.array([0.3, 0.3, 0.3])
+    RGB2_m = np.array([0.1, 0.1, 0.1])
+    RGB1_cov = np.array([[0.1, 0.04, 0.03],
+                        [0.04, 0.1, 0.02],
+                        [0.03, 0.02, 0.1]])
+    RGB2_cov = np.array([[0.3, 0.02, 0.02],
+                        [0.02, 0.3, 0.02],
+                        [0.02, 0.02, 0.3]])
 
     RGB = np.zeros((len(sample), 11))
 
@@ -161,7 +161,7 @@ else:
     cx.imshow(RGB_ROI)
     plt.show()
     # 迭代更新参数
-    for epoch in range(20):
+    for epoch in range(30):
         for i in range(len(sample)):
 
             # 贝叶斯计算每个数据的后验，即得到软标签

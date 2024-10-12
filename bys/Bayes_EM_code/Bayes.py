@@ -14,10 +14,10 @@ fish_309 = False
 if fish_309:
     mask = io.loadmat('mask.mat')['Mask']
 else:
-    nemo_ = cv.imread('date/315.bmp')       # 注意：根据选择的不同图片进行修改
+    nemo_ = cv.imread('date/317.bmp')       # 注意：根据选择的不同图片进行修改
     mask = generate_nemo_mask(nemo_)
 sample = io.loadmat('sample.mat')['array_sample']
-src_image = Image.open('date/315.bmp')      # 注意：根据选择的不同图片进行修改
+src_image = Image.open('date/317.bmp')      # 注意：根据选择的不同图片进行修改
 RGB_img = np.array(src_image)
 Gray_img = np.array(src_image.convert('L'))
 
